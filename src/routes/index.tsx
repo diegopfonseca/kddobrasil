@@ -139,9 +139,9 @@ function Header() {
       <div className="container-x flex h-16 items-center justify-between">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="font-display text-lg tracking-[0.25em] text-foreground"
+          aria-label="KD do Brasil — início"
         >
-          KD DO BRASIL
+          <img src="/logo.gif" alt="KD do Brasil" className="h-8 w-auto" loading="eager" />
         </button>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -604,7 +604,7 @@ function Footer() {
       <div className="container-x">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="font-display text-lg tracking-[0.25em] text-foreground">KD DO BRASIL</p>
+            <img src="/logo.gif" alt="KD do Brasil" className="h-8 w-auto" loading="lazy" />
             <p className="mt-1 text-sm text-muted-foreground">
               © {year} Knowledge Direction do Brasil. Desde 1998.
             </p>
