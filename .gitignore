@@ -1,0 +1,9 @@
+node_modules/
+.nitro/
+.output/
+.vinxi/
+dist/
+.cache/
+bun.lockb
+.env
+.env.local
