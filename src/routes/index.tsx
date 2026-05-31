@@ -316,10 +316,10 @@ function Sobre() {
 // ─── Serviços ─────────────────────────────────────────────────────────────────
 function Servicos() {
   return (
-    <section id="servicos" className="bg-surface py-24 lg:py-32">
+    <section id="servicos" className="bg-white py-24 lg:py-32">
       <div className="container-x">
         <p className="eyebrow mb-4">Serviços</p>
-        <h2 className="font-display mb-12 text-3xl text-foreground lg:text-4xl">O que fazemos.</h2>
+        <h2 className="font-display mb-12 text-3xl text-gray-900 lg:text-4xl">O que fazemos.</h2>
 
         <div className="grid gap-6 md:grid-cols-2">
           {SERVICES.map((service) => {
@@ -327,11 +327,11 @@ function Servicos() {
             return (
               <div
                 key={service.title}
-                className="group flex flex-col border border-border p-8 transition-colors hover:border-primary"
+                className="group flex flex-col border border-gray-200 p-8 transition-colors hover:border-primary"
               >
                 <Icon size={28} className="mb-4 text-primary" />
-                <h3 className="font-display mb-4 text-xl text-foreground">{service.title}</h3>
-                <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+                <h3 className="font-display mb-4 text-xl text-gray-900">{service.title}</h3>
+                <p className="flex-1 text-sm leading-relaxed text-gray-600">
                   {service.description}
                 </p>
                 <a
