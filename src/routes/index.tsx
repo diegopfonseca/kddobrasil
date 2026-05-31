@@ -464,13 +464,13 @@ function Depoimentos() {
 // ─── Oportunidades ────────────────────────────────────────────────────────────
 function Oportunidades() {
   return (
-    <section id="oportunidades" className="bg-background py-24 lg:py-32">
+    <section id="oportunidades" className="bg-primary py-24 lg:py-32">
       <div className="container-x">
-        <p className="eyebrow mb-4">Oportunidades</p>
-        <h2 className="font-display mb-4 text-3xl text-foreground lg:text-4xl">
+        <p className="eyebrow mb-4 text-center text-primary-foreground/70">Oportunidades</p>
+        <h2 className="font-display mb-4 text-center text-3xl text-primary-foreground lg:text-4xl">
           Tecnologias para investir.
         </h2>
-        <p className="mb-12 max-w-xl text-muted-foreground">
+        <p className="mb-12 text-center text-primary-foreground/80 mx-auto max-w-xl">
           Spin-offs com tecnologias proprietárias e mercado validado, abertas a investidores
           estratégicos.
         </p>
@@ -479,7 +479,7 @@ function Oportunidades() {
           {OPPORTUNITIES.map((opp) => (
             <div
               key={opp.name}
-              className="border border-border p-8 transition-colors hover:border-primary"
+              className="border border-primary-foreground/20 bg-primary-foreground/5 p-8 transition-colors hover:border-primary-foreground/50"
             >
               <div className="mb-6 flex items-start justify-between gap-4">
                 <img
@@ -496,24 +496,24 @@ function Oportunidades() {
                 />
               </div>
 
-              <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary-foreground/60">
                 {opp.sealLabel}
               </p>
-              <h3 className="font-display mb-3 text-2xl text-foreground">{opp.headline}</h3>
-              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+              <h3 className="font-display mb-3 text-2xl text-primary-foreground">{opp.headline}</h3>
+              <p className="mb-6 text-sm leading-relaxed text-primary-foreground/75">
                 {opp.description}
               </p>
 
               <div className="flex flex-wrap gap-3">
                 <a
                   href={opp.pitchPdf}
-                  className="border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                  className="border border-primary-foreground/40 px-4 py-2 text-sm text-primary-foreground/80 transition-colors hover:border-primary-foreground hover:text-primary-foreground"
                 >
                   Ver pitch deck
                 </a>
                 <a
                   href={`${MAILTO}?subject=${encodeURIComponent(`Quero investir – ${opp.name}`)}`}
-                  className="bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                  className="bg-primary-foreground px-4 py-2 text-sm font-semibold text-primary transition-opacity hover:opacity-90"
                 >
                   Quero investir →
                 </a>
