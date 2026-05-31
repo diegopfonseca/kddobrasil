@@ -133,7 +133,7 @@ function Header() {
 
   return (
     <header
-      className="relative z-50 bg-background"
+      className="relative z-50 bg-transparent"
     >
       <div className="container-x flex items-start justify-between py-6">
         <button
@@ -202,7 +202,7 @@ function Header() {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center bg-background pt-16">
+    <section className="relative flex min-h-screen items-center bg-background">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -211,7 +211,7 @@ function Hero() {
         }}
       />
 
-      <div className="container-x relative py-32 lg:py-40">
+      <div className="container-x relative py-16 lg:py-24">
         <p className="eyebrow mb-6">KD do Brasil · Desde 1998</p>
 
         <h1 className="font-display mb-6 max-w-3xl text-4xl leading-tight text-foreground sm:text-5xl lg:text-6xl">
