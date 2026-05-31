@@ -52,7 +52,7 @@ function RootComponent() {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="bg-background text-foreground">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
