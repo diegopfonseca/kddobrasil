@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Recycle, Lightbulb, ChevronDown, Sparkles, Menu, X } from 'lucide-react'
 
 export const Route = createFileRoute('/')({
@@ -129,22 +129,11 @@ function scrollTo(id: string) {
 
 // ─── Header ───────────────────────────────────────────────────────────────────
 function Header() {
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handler, { passive: true })
-    return () => window.removeEventListener('scroll', handler)
-  }, [])
 
   return (
     <header
-      className={`relative z-50 transition-all duration-300 md:fixed md:inset-x-0 md:top-0 ${
-        scrolled
-          ? 'border-b border-border bg-background/85 backdrop-blur-md'
-          : 'bg-transparent'
-      }`}
+      className="relative z-50 bg-background"
     >
       <div className="container-x flex items-start justify-between py-6">
         <button
