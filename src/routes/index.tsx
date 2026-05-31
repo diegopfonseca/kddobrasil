@@ -69,21 +69,33 @@ const CLIENTS = [
 const TESTIMONIALS = [
   {
     name: 'Rodrigo Gomes',
-    role: 'Gerente Geral de Inovação e Energia · Nexa Resources',
-    text: 'A KD do Brasil foi fundamental no desenvolvimento do Mining Lab. Sua expertise em tecnologia vitrocerâmica abriu caminhos que não imaginávamos para o aproveitamento dos nossos rejeitos de mineração.',
+    role: 'Gerente Geral de Inovação e Energia | Nexa Resources',
     initials: 'RG',
-  },
-  {
-    name: 'Cayo Moraes',
-    role: 'Gestor Executivo de Operação e PDI · Energia Pecém',
-    text: 'Foi possível comprovar através da prova de conceito que realizamos com a KD que as cinzas de carvão de nossas caldeiras, depositadas como resíduo, foram imobilizadas com a tecnologia empregada, transformando os resíduos em uma rica fonte de matéria-prima para fabricação de porcelanatos e vitrocerâmicas com alto valor agregado.',
-    initials: 'CM',
+    text: 'Através do programa Mining Lab a KD pôde agregar seu conhecimento às necessidades da Nexa de forma a viabilizar o desenvolvimento de uma tecnologia inovadora de processamento de resíduos minero-metalúrgicos em materiais vitro-cerâmicos para aplicação como piso e revestimento. O projeto segue a filosofia de Economia Circular reaproveitando materiais que ficavam depositados em novos mercados.',
   },
   {
     name: 'Lucimar Dantas',
-    role: 'Gerente de Articulações Corporativas · Parque Tecnológico UFRJ',
-    text: 'A KD do Brasil exemplifica como a articulação entre ciência e mercado gera resultados concretos. Sua atuação em economia circular conecta inovação acadêmica com demandas reais da indústria.',
+    role: 'Gerente de Articulações Corporativas | Parque Tecnológico UFRJ',
     initials: 'LD',
+    text: 'Já faz tempo que a KD está na jornada da transformação de resíduos industriais em produtos, desde uma época em que o conceito de economia circular ainda não existia. O time é enxuto, mas grande é sua capacidade de articulação no meio científico aos desafios empresariais para criar novas rotas de transformação que criam valor para a indústria, o consumidor e o planeta.',
+  },
+  {
+    name: 'Nilson Schwartz da Silva',
+    role: 'Diretor de Marketing e Produto | T-minas Minerais Industrias',
+    initials: 'NS',
+    text: 'A capacidade da KD de identificar o potencial de aplicação de rejeitos minerais, formular o produto, estabelecer seu processo de fabricação e criar estratégias para posicioná-lo no mercado, integrando todas essas etapas, foi um grande aprendizado. Compreendemos melhor o que importa de fato em um projeto de transformação de resíduos em produtos de valor.',
+  },
+  {
+    name: 'Chrysler Guimarães',
+    role: 'Especialista em Desenvolvimento de Produtos | CSN',
+    initials: 'CG',
+    text: 'A KD do Brasil nos auxiliou com sua expertise na fase de seleção e classificação de projetos destinados a desenvolver aplicações industriais inovadoras para o programa Inova Mineral do BNDES e FINEP. Uma empresa brasileira com atividades de PD&I que segue contribuindo com as políticas de inovação e sustentabilidade para criar valor para os negócios.',
+  },
+  {
+    name: 'Cayo Moraes',
+    role: 'Gestor Executivo de Operação e PDI | Energia Pecém',
+    initials: 'CM',
+    text: 'Foi possível comprovar através da prova de conceito que realizamos com a KD que as cinzas de carvão de nossas caldeiras, depositadas como resíduo, foram imobilizadas com a tecnologia empregada, transformando os resíduos em uma rica fonte de matéria-prima para fabricação de porcelanatos e vitrocerâmicas com alto valor agregado, os quais precisam ainda ser testados em linha de produção.',
   },
 ]
 
@@ -386,75 +398,32 @@ function Clientes() {
 
 // ─── Depoimentos ──────────────────────────────────────────────────────────────
 function Depoimentos() {
-  const [current, setCurrent] = useState(0)
-  const [paused, setPaused] = useState(false)
-
-  useEffect(() => {
-    if (paused) return
-    const id = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % TESTIMONIALS.length)
-    }, 8000)
-    return () => clearInterval(id)
-  }, [paused])
-
-  const prev = () => setCurrent((c) => (c - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
-  const next = () => setCurrent((c) => (c + 1) % TESTIMONIALS.length)
-  const t = TESTIMONIALS[current]
-
   return (
-    <section
-      className="bg-surface py-24 lg:py-32"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <section className="bg-surface py-24 lg:py-32">
       <div className="container-x">
-        <div className="mb-12 flex items-center justify-between">
-          <p className="eyebrow">Depoimentos</p>
-          <div className="flex gap-2">
-            <button
-              onClick={prev}
-              className="flex h-10 w-10 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-              aria-label="Anterior"
+        <p className="eyebrow mb-12">Depoimentos</p>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {TESTIMONIALS.map((t) => (
+            <div
+              key={t.name}
+              className="flex flex-col border border-border p-6"
             >
-              ‹
-            </button>
-            <button
-              onClick={next}
-              className="flex h-10 w-10 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-              aria-label="Próximo"
-            >
-              ›
-            </button>
-          </div>
-        </div>
-
-        <div className="max-w-4xl">
-          <p className="font-display mb-6 text-5xl leading-none text-primary">"</p>
-
-          <p className="font-display mb-10 text-xl leading-snug text-foreground sm:text-2xl">
-            {t.text}
-          </p>
-
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-primary text-sm font-bold text-primary-foreground">
-              {t.initials}
+              <p className="font-display mb-4 text-3xl leading-none text-primary">"</p>
+              <p className="mb-6 flex-1 text-sm leading-relaxed text-muted-foreground">
+                {t.text}
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-xs font-bold text-primary-foreground">
+                  {t.initials}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-foreground">{t.name}</p>
-              <p className="text-sm text-muted-foreground">{t.role}</p>
-            </div>
-          </div>
-
-          <div className="mt-8 flex items-center gap-3">
-            {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`h-1 transition-all ${i === current ? 'w-8 bg-primary' : 'w-4 bg-border'}`}
-                aria-label={`Depoimento ${i + 1}`}
-              />
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </section>
