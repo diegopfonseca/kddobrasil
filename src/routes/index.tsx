@@ -21,11 +21,9 @@ const MARCUS_FOTO =
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const NAV_LINKS = [
   { label: 'Sobre', id: 'sobre' },
-  { label: 'Serviços', id: 'servicos' },
-  { label: 'Clientes', id: 'clientes' },
+  { label: 'Nossos Serviços', id: 'servicos' },
+  { label: 'Nossos Clientes', id: 'clientes' },
   { label: 'Oportunidades', id: 'oportunidades' },
-  { label: 'Time', id: 'time' },
-  { label: 'Contato', id: 'contato' },
 ]
 
 const STATS = [
@@ -142,21 +140,21 @@ function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`relative z-50 transition-all duration-300 md:fixed md:inset-x-0 md:top-0 ${
         scrolled
           ? 'border-b border-border bg-background/85 backdrop-blur-md'
           : 'bg-transparent'
       }`}
     >
-      <div className="container-x flex h-16 items-center justify-between">
+      <div className="container-x flex items-start justify-between py-6">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="KD do Brasil — início"
         >
-          <img src="/logo.gif" alt="KD do Brasil" className="h-[60px] w-auto" loading="eager" />
+          <img src="/logo.gif" alt="KD do Brasil" className="h-20 w-auto" loading="eager" />
         </button>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-start gap-8 pt-1 md:flex">
           {NAV_LINKS.map((link) => (
             <button
               key={link.id}
@@ -166,17 +164,16 @@ function Header() {
               {link.label}
             </button>
           ))}
+          <a
+            href={`${MAILTO}?subject=Contato`}
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Fale Conosco
+          </a>
         </nav>
 
-        <a
-          href={`${MAILTO}?subject=Contato`}
-          className="hidden bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 md:block"
-        >
-          Fale conosco
-        </a>
-
         <button
-          className="text-foreground md:hidden"
+          className="pt-1 text-foreground md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Menu"
         >
@@ -185,7 +182,7 @@ function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background/95 backdrop-blur-md md:hidden">
+        <div className="border-t border-border bg-background/95 md:hidden">
           <div className="container-x flex flex-col gap-4 py-6">
             {NAV_LINKS.map((link) => (
               <button
@@ -201,10 +198,10 @@ function Header() {
             ))}
             <a
               href={`${MAILTO}?subject=Contato`}
-              className="mt-2 bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
+              className="text-muted-foreground transition-colors hover:text-foreground"
               onClick={() => setOpen(false)}
             >
-              Fale conosco
+              Fale Conosco
             </a>
           </div>
         </div>
@@ -397,32 +394,38 @@ function Clientes() {
 }
 
 // ─── Depoimentos ──────────────────────────────────────────────────────────────
+function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
+  return (
+    <div className="flex flex-col border border-border p-6">
+      <p className="font-display mb-4 text-3xl leading-none text-primary">"</p>
+      <p className="mb-6 flex-1 text-sm leading-relaxed text-muted-foreground">{t.text}</p>
+      <div className="flex items-center gap-3">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-xs font-bold text-primary-foreground">
+          {t.initials}
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-foreground">{t.name}</p>
+          <p className="text-xs text-muted-foreground">{t.role}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function Depoimentos() {
   return (
     <section className="bg-surface py-24 lg:py-32">
       <div className="container-x">
         <p className="eyebrow mb-12">Depoimentos</p>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {TESTIMONIALS.map((t) => (
-            <div
-              key={t.name}
-              className="flex flex-col border border-border p-6"
-            >
-              <p className="font-display mb-4 text-3xl leading-none text-primary">"</p>
-              <p className="mb-6 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {t.text}
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-primary text-xs font-bold text-primary-foreground">
-                  {t.initials}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
-                </div>
-              </div>
-            </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {TESTIMONIALS.slice(0, 3).map((t) => (
+            <TestimonialCard key={t.name} t={t} />
+          ))}
+        </div>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:mx-auto lg:max-w-[66.7%]">
+          {TESTIMONIALS.slice(3).map((t) => (
+            <TestimonialCard key={t.name} t={t} />
           ))}
         </div>
       </div>
