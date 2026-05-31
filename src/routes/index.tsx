@@ -69,19 +69,19 @@ const CLIENTS = [
 const TESTIMONIALS = [
   {
     name: 'Rodrigo Gomes',
-    role: 'Gerente Geral de Inovação e Energia, Nexa Resources',
+    role: 'Gerente Geral de Inovação e Energia · Nexa Resources',
     text: 'A KD do Brasil foi fundamental no desenvolvimento do Mining Lab. Sua expertise em tecnologia vitrocerâmica abriu caminhos que não imaginávamos para o aproveitamento dos nossos rejeitos de mineração.',
     initials: 'RG',
   },
   {
     name: 'Cayo Moraes',
-    role: 'Gestor Executivo de Operação e PDI, Energia Pecém',
-    text: 'A solução desenvolvida pela KD para imobilização das cinzas de carvão foi além das nossas expectativas. Transformamos um passivo ambiental complexo em matéria-prima com valor real de mercado.',
+    role: 'Gestor Executivo de Operação e PDI · Energia Pecém',
+    text: 'Foi possível comprovar através da prova de conceito que realizamos com a KD que as cinzas de carvão de nossas caldeiras, depositadas como resíduo, foram imobilizadas com a tecnologia empregada, transformando os resíduos em uma rica fonte de matéria-prima para fabricação de porcelanatos e vitrocerâmicas com alto valor agregado.',
     initials: 'CM',
   },
   {
     name: 'Lucimar Dantas',
-    role: 'Gerente de Articulações Corporativas, Parque Tecnológico UFRJ',
+    role: 'Gerente de Articulações Corporativas · Parque Tecnológico UFRJ',
     text: 'A KD do Brasil exemplifica como a articulação entre ciência e mercado gera resultados concretos. Sua atuação em economia circular conecta inovação acadêmica com demandas reais da indústria.',
     initials: 'LD',
   },
@@ -141,7 +141,7 @@ function Header() {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="KD do Brasil — início"
         >
-          <img src="/logo.gif" alt="KD do Brasil" className="h-8 w-auto" loading="eager" />
+          <img src="/logo.gif" alt="KD do Brasil" className="h-[60px] w-auto" loading="eager" />
         </button>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -397,6 +397,8 @@ function Depoimentos() {
     return () => clearInterval(id)
   }, [paused])
 
+  const prev = () => setCurrent((c) => (c - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+  const next = () => setCurrent((c) => (c + 1) % TESTIMONIALS.length)
   const t = TESTIMONIALS[current]
 
   return (
@@ -406,15 +408,35 @@ function Depoimentos() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="container-x">
-        <p className="eyebrow mb-12">O que dizem sobre nós</p>
+        <div className="mb-12 flex items-center justify-between">
+          <p className="eyebrow">Depoimentos</p>
+          <div className="flex gap-2">
+            <button
+              onClick={prev}
+              className="flex h-10 w-10 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              aria-label="Anterior"
+            >
+              ‹
+            </button>
+            <button
+              onClick={next}
+              className="flex h-10 w-10 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              aria-label="Próximo"
+            >
+              ›
+            </button>
+          </div>
+        </div>
 
-        <div className="mx-auto max-w-3xl">
-          <p className="font-display mb-6 text-6xl leading-none text-primary">"</p>
+        <div className="max-w-4xl">
+          <p className="font-display mb-6 text-5xl leading-none text-primary">"</p>
 
-          <p className="mb-8 text-lg leading-relaxed text-muted-foreground">{t.text}</p>
+          <p className="font-display mb-10 text-xl leading-snug text-foreground sm:text-2xl">
+            {t.text}
+          </p>
 
           <div className="flex items-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center bg-primary text-sm font-bold text-primary-foreground">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-primary text-sm font-bold text-primary-foreground">
               {t.initials}
             </div>
             <div>
