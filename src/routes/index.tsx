@@ -133,7 +133,7 @@ function Header() {
 
   return (
     <header
-      className="relative z-50 bg-transparent"
+      className="relative z-50"
     >
       <div className="container-x flex items-start justify-between py-6">
         <button

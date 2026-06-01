@@ -48,7 +48,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootComponent() {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="bg-background">
       <head>
         <HeadContent />
       </head>
