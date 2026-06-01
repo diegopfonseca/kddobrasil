@@ -202,7 +202,7 @@ function Header() {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center bg-background">
+    <section className="relative flex min-h-screen items-center">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -619,9 +619,11 @@ function Footer() {
 function Home() {
   return (
     <>
-      <Header />
-      <main>
+      <div className="bg-background">
+        <Header />
         <Hero />
+      </div>
+      <main>
         <Sobre />
         <Servicos />
         <Clientes />
